@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Gravitysettings : MonoBehaviour
 {
-    public static float speed = 10;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,9 +11,6 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("a")) 
-        {
-            transform.position += Vector3.left * Time.deltaTime * speed;
-        }
+        
     }
 }
