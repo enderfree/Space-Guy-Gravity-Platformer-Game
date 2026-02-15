@@ -206,7 +206,7 @@ MonoBehaviour:
   airDecel: 30
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   groundCheck: {fileID: 8528920418900553306}
   groundCheckRadius: 0.2
   coyoteTime: 0.2

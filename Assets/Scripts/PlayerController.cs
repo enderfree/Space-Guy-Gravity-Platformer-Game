@@ -56,9 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-
             isJumpPressed = true;
-            
         }
     }
     private void onJumpCanceled(InputAction.CallbackContext context)
@@ -89,8 +87,8 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
         RunStates();
         //MovePlayer();
-        Debug.Log(currentState);
-        Debug.Log(moveDirection);
+       // Debug.Log(currentState);
+        //Debug.Log(moveDirection);
     }
 
     private bool isGrounded()
@@ -142,7 +140,7 @@ public class PlayerController : MonoBehaviour
     //Jump Functions
     private void StartJump()
     {
-        Debug.LogWarning("Jump Script");
+        //Debug.LogWarning("Jump Script");
         currentState = "IsJumping";
 
         //rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
