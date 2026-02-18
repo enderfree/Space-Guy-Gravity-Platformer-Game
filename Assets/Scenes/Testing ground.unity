@@ -124,11 +124,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7973651739046981250, guid: 6b06c8b2fe684db40bd5dde5b2146229, type: 3}
   m_PrefabInstance: {fileID: 1668697392}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &36521643 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5306533142968410059, guid: 6b06c8b2fe684db40bd5dde5b2146229, type: 3}
-  m_PrefabInstance: {fileID: 316423547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &49051854
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +903,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &99502594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7973651739046981250, guid: 6b06c8b2fe684db40bd5dde5b2146229, type: 3}
+  m_PrefabInstance: {fileID: 736501755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &126970596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1579,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0000002, y: 1.0000002}
   m_EdgeRadius: 0
+--- !u!1 &262747037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7973651739046981250, guid: 6b06c8b2fe684db40bd5dde5b2146229, type: 3}
+  m_PrefabInstance: {fileID: 316423547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &267329749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,8 +3201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacity: 10
   nbOfCharges: 0
-  mask: {fileID: 489588455}
+  mask: {fileID: 99502594}
   energyBar: {fileID: 713073725}
+  launcher: {fileID: 1926377582}
 --- !u!1 &489001269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,11 +3337,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &489588455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5306533142968410059, guid: 6b06c8b2fe684db40bd5dde5b2146229, type: 3}
-  m_PrefabInstance: {fileID: 736501755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502735944
 GameObject:
   m_ObjectHideFlags: 0
@@ -10014,8 +10015,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacity: 20
   nbOfCharges: 0
-  mask: {fileID: 36521643}
+  mask: {fileID: 262747037}
   energyBar: {fileID: 713073725}
+  launcher: {fileID: 1926377582}
 --- !u!1 &1543488911
 GameObject:
   m_ObjectHideFlags: 0
@@ -11459,6 +11461,7 @@ MonoBehaviour:
   nbOfCharges: 1
   mask: {fileID: 12182639}
   energyBar: {fileID: 713073725}
+  launcher: {fileID: 1926377582}
 --- !u!1 &1803016683
 GameObject:
   m_ObjectHideFlags: 0
@@ -11741,6 +11744,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1164470526107813868, guid: 03be92311ca590e49b87c803851f32d1, type: 3}
   m_PrefabInstance: {fileID: 1491803674}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926377582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1123510579695446932, guid: 03be92311ca590e49b87c803851f32d1, type: 3}
+  m_PrefabInstance: {fileID: 1491803674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926377579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f141714238032004c865c237a64ada1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Launcher
 --- !u!1 &1927248844
 GameObject:
   m_ObjectHideFlags: 0
