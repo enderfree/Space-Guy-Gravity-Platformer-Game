@@ -1,10 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     public InputSet inputSet;
+
+    [SerializeField] private Transform playerTransform;
     
     //Run  
     public float topSpeed = 10f;
@@ -75,6 +78,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void onDown(InputAction.CallbackContext context)
+    { 
+    
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -96,6 +104,24 @@ public class PlayerController : MonoBehaviour
         // Debug.Log(currentState);
         //Debug.Log(moveDirection);
         AnimationController();
+
+        // too short on time to do pretty code at this point
+        if (Input.GetKeyDown("s"))
+        {
+            List<Collider2D> overlap = new List<Collider2D>();
+
+            if (Physics2D.OverlapCircle(playerTransform.position, groundCheckRadius, new ContactFilter2D().NoFilter(), overlap) > 0)
+            {
+                foreach (Collider2D col in overlap)
+                {
+                    Debug.Log(col.gameObject.name);
+                    if (col.gameObject.TryGetComponent<IInterractable>(out IInterractable interractable))
+                    {
+                        interractable.Interract();
+                    }
+                }
+            }
+        }
     }
 
     private bool isGrounded()
