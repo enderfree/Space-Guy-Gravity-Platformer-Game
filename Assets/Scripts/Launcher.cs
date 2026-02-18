@@ -9,6 +9,11 @@ public class Launcher : MonoBehaviour
     public GameObject bubblePrefab; //Add the bubble prefab 
     [SerializeField] private GameObject shootPoint; //Add the empty child where you want to shoot from
     [SerializeField] private GameObject armJoint;
+
+    public EnergyBar energyBar;
+    public int maxEnergy = 10;
+    public int currentEnergy;
+
     public float shotSpeed = 10f;
     private void OnEnable()
     {
@@ -26,11 +31,25 @@ public class Launcher : MonoBehaviour
         inputSet = new InputSet();
     }
 
+    private void Start()
+    {
+        currentEnergy = maxEnergy;
+        energyBar.SetMaxEnergy(maxEnergy);
+    }
+
     private void onShootPerformed(InputAction.CallbackContext context) 
     {
-        Debug.Log("Bubble shot");
-        GameObject bubbleShot = Instantiate(bubblePrefab, new Vector3(shootPoint.transform.position.x + 1f, shootPoint.transform.position.y, shootPoint.transform.position.z), shootPoint.transform.rotation );
-        bubbleShot.GetComponent<Rigidbody2D>().linearVelocity = shootPoint.transform.right * shotSpeed;
+        if (currentEnergy>0) 
+        {
+            currentEnergy -= 1;
+            energyBar.SetEnergy(currentEnergy);
+            GameObject bubbleShot = Instantiate(bubblePrefab, new Vector3(shootPoint.transform.position.x + 1f, shootPoint.transform.position.y, shootPoint.transform.position.z), shootPoint.transform.rotation);
+            bubbleShot.GetComponent<Rigidbody2D>().linearVelocity = shootPoint.transform.right * shotSpeed;
+        }
+        else
+        {
+            Debug.Log("Out of ammo, do something about it");
+        }
     }  
 
     void Update()
@@ -40,11 +59,9 @@ public class Launcher : MonoBehaviour
 
     private void ShootPointRotation()
     {
-       
-       //rotate towards mouse position
+        //rotate towards mouse position
         worldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         direction = (worldPosition - (Vector2)armJoint.transform.position).normalized;
         armJoint.transform.right = direction;
-        Debug.Log(direction);
     }
 }
