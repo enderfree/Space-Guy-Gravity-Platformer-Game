@@ -73,7 +73,7 @@ public class Launcher : MonoBehaviour
             return;
         }
 
-        if (currentEnergy > 0)
+        if (currentEnergy > 0) // && Physics2D.Raycast(transform.position, shootPoint.transform.position, Vector2.Distance(transform.position, shootPoint.transform.position))
         {
             currentEnergy -= 1;
 
