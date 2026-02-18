@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0ef8bd2b0f94033ba3645b04bf3d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBounces: 100
+  maxBounces: 5
   playerBounceForce: 14
   currentDirection: {x: 0, y: 0}
   speed: 10

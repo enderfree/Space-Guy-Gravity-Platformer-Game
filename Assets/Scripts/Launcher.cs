@@ -40,9 +40,11 @@ public class Launcher : MonoBehaviour
 
     private void ShootPointRotation()
     {
-        //rotate towards mouse position
+       
+       //rotate towards mouse position
         worldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         direction = (worldPosition - (Vector2)armJoint.transform.position).normalized;
         armJoint.transform.right = direction;
+        Debug.Log(direction);
     }
 }
