@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
     //State Machine
     private string currentState = "none";
     Rigidbody2D rb;
+
+    //Animations
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private float verticalVelocity;
 
     private void OnEnable()
     {
@@ -87,8 +93,9 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
         RunStates();
         //MovePlayer();
-       // Debug.Log(currentState);
+        // Debug.Log(currentState);
         //Debug.Log(moveDirection);
+        AnimationController();
     }
 
     private bool isGrounded()
@@ -256,6 +263,11 @@ public class PlayerController : MonoBehaviour
             {
                 myYVelocity = terminalYVelocity;
             }
+            //For Animations
+            if (currentState != "IsJumping")
+            {
+                currentState = "IsJumping";
+            }
         }
         else
         {
@@ -265,6 +277,80 @@ public class PlayerController : MonoBehaviour
         rb.AddForceY(myYVelocity, ForceMode2D.Force);
     }
 
+    //Animation Functions
+    void AnimationController()
+    {
+        verticalVelocity = rb.linearVelocityY;
+
+        if (currentState == "none")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isJumpingUp", false);
+            animator.SetBool("isJumpingMid", false);
+            animator.SetBool("isJumpingDown", false);
+        }
+        else if (currentState == "IsRunning")
+        {
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isJumpingUp", false);
+            animator.SetBool("isJumpingMid", false);
+            animator.SetBool("isJumpingDown", false);
+        }
+        else if (currentState == "IsJumping")
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", true);
+            AnimationJumping();
+        }
+        AnimationTurning();
+        //insert funny thing here
+    }
+
+    void AnimationTurning()
+    {
+        if (moveDirection == -1 && spriteRenderer.flipX == false)
+        {
+            spriteRenderer.flipX = true;
+            if (currentState == "IsRunning")
+            {
+                animator.SetTrigger("isTurning");
+            }
+        }
+        if (moveDirection == 1 && spriteRenderer.flipX == true)
+        {
+            spriteRenderer.flipX = false;
+            if (currentState == "IsRunning")
+            {
+                animator.SetTrigger("isTurning");
+            }
+        }
+    }
+
+    void AnimationJumping()
+    {
+        if (verticalVelocity >= 2)
+        {
+            animator.SetBool("isJumpingUp", true);
+            animator.SetBool("isJumpingMid", false);
+            animator.SetBool("isJumpingDown", false);
+        }
+        else if (verticalVelocity < 2 && verticalVelocity > -2)
+        {
+            animator.SetBool("isJumpingUp", false);
+            animator.SetBool("isJumpingMid", true);
+            animator.SetBool("isJumpingDown", false);
+
+        }
+        else if (verticalVelocity <= -2)
+        {
+            animator.SetBool("isJumpingUp", false);
+            animator.SetBool("isJumpingMid", false);
+            animator.SetBool("isJumpingDown", true);
+
+        }
+    }
 }
 
 

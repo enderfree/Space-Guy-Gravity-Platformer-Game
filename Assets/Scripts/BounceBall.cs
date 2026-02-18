@@ -23,20 +23,20 @@ public class BounceBall : MonoBehaviour
                 // Launch player upward
                 playerRb.linearVelocity *= -1f;
             }
-           //Vector2.Reflect(currentDirection, collision.GetContact(0).normal)
-           // Destroy(gameObject);
+           Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
+           Destroy(gameObject);
             return;
         }
-       // else
+       else
         {
-       // currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
-        //currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
+       currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
+        currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
 		//now the current direction is bouncing off a vector that includes itself, 
 		// the FIRST contact point, and from the first contact point you are reflecting 
 		// back on a vector 
         }
-		//currentDirection.Normalize(); 
-       // rb.linearVelocity = currentDirection * speed;
+		currentDirection.Normalize(); 
+       rb.linearVelocity = currentDirection * speed;
         
 
         // Count ground bounces
