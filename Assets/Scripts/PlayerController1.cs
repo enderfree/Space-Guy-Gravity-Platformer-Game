@@ -41,7 +41,9 @@ public class PlayerController : MonoBehaviour
 
     //Animations
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator armAnimator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer armRenderer;
     private float verticalVelocity;
 
     private void OnEnable()
@@ -85,6 +87,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         InputCheck();
+
+        if (Input.GetKeyDown(KeyCode.T))
+        { AnimationTaunt();
+        }
+
     }
 
     void FixedUpdate()
@@ -305,7 +312,6 @@ public class PlayerController : MonoBehaviour
             AnimationJumping();
         }
         AnimationTurning();
-        //insert funny thing here
     }
 
     void AnimationTurning()
@@ -350,6 +356,24 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumpingDown", true);
 
         }
+    }
+
+    void AnimationTaunt()
+    {
+        int randomValue = Random.Range(0, 5);
+        Debug.Log(randomValue);
+        armRenderer.enabled = false;
+        armAnimator.enabled = false;
+        animator.SetTrigger("isTaunt" + randomValue.ToString());
+    }
+    void AnimationReturnArm()
+    {
+        if (armRenderer.enabled == false || armAnimator.enabled == false) 
+        {
+           armRenderer.enabled = true;
+           armAnimator.enabled = true;
+        }
+
     }
 }
 

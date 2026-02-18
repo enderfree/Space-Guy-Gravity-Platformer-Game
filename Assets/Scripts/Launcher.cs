@@ -12,6 +12,11 @@ public class Launcher : MonoBehaviour
     [SerializeField] private GameObject shootPoint;
     [SerializeField] private GameObject armJoint;
 
+    [SerializeField] private Animator animator; //Add Arm Animator
+    [SerializeField] private Animator playerAnimator; //Add Player's Animator
+    [SerializeField] private SpriteRenderer playerRenderer; //Add Player's Sprite Renderer
+    [SerializeField] private Transform rotationCenter; //Add Arm Center Empty
+
     public EnergyBar energyBar;
     public int maxEnergy = 10;
     public int currentEnergy;
@@ -59,6 +64,8 @@ public class Launcher : MonoBehaviour
     private void onShootPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("Shoot pressed");
+        //For Animation
+        animator.SetTrigger("isShot");
 
         if (bubblePrefab == null || shootPoint == null)
         {
@@ -74,9 +81,7 @@ public class Launcher : MonoBehaviour
                 energyBar.SetEnergy(currentEnergy);
 
             // destroy previous bubble
-            if (currentBubble != null)
-                Destroy(currentBubble);
-
+            
             // spawn slightly in front of gun
             currentBubble = Instantiate(
                 bubblePrefab,
@@ -117,6 +122,7 @@ public class Launcher : MonoBehaviour
     void Update()
     {
         ShootPointRotation();
+        AnimationController();
     }
 
     private void ShootPointRotation()
@@ -131,5 +137,17 @@ public class Launcher : MonoBehaviour
 
         direction = (worldPosition - (Vector2)armJoint.transform.position).normalized;
         armJoint.transform.right = direction;
+    }
+    //Animation Flip
+    void AnimationController()
+    {
+        if (playerRenderer.flipX == true && rotationCenter.localRotation != Quaternion.Euler(0f, 180f, 0))
+        {
+            rotationCenter.localRotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        if (playerRenderer.flipX == false && rotationCenter.localRotation != Quaternion.Euler(0f, 0f, 0))
+        {
+            rotationCenter.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
     }
 }
