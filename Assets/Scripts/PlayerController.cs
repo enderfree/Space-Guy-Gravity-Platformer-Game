@@ -80,11 +80,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void onDown(InputAction.CallbackContext context)
-    { 
-    
-    }
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -386,7 +381,7 @@ public class PlayerController : MonoBehaviour
 
     void AnimationTaunt()
     {
-        int randomValue = Random.Range(0, 5);
+        int randomValue = Random.Range(0, 8);
         Debug.Log(randomValue);
         armRenderer.enabled = false;
         armAnimator.enabled = false;
