@@ -30,7 +30,6 @@ public class BounceBall : MonoBehaviour
        else
         {
        currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
-        currentDirection = Vector2.Reflect(currentDirection, collision.GetContact(0).normal);
 		//now the current direction is bouncing off a vector that includes itself, 
 		// the FIRST contact point, and from the first contact point you are reflecting 
 		// back on a vector 
@@ -46,7 +45,7 @@ public class BounceBall : MonoBehaviour
 
             if (bounceCount >= maxBounces)
             {
-               // Destroy(gameObject);
+               Destroy(gameObject);
             }
         }
     }
