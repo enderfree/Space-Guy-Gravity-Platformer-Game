@@ -1715,6 +1715,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 880135513274412109, guid: cb2441e20443109469cb11a6304681f7, type: 3}
+      propertyPath: maxEnergy
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 880135513274412109, guid: cb2441e20443109469cb11a6304681f7, type: 3}
       propertyPath: shotSpeed
       value: 6
       objectReference: {fileID: 0}
