@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.WSA;
+//using UnityEngine.WSA;
 
 public class FinalDestination : MonoBehaviour, IInterractable
 {
